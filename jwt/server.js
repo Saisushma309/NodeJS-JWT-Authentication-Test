@@ -49,6 +49,7 @@ app.post('/api/login', (req,res) => {
     
     for(let user of users) {
         if(username == user.username && password == user.password) {
+            // Setting expiry time to 3 minutes
             let token = jwt.sign({ id : user.id , username : user.username },secretkey,{expiresIn :'3m'});
             res.json({
                 success: true,
@@ -68,7 +69,8 @@ app.post('/api/login', (req,res) => {
     
 });
 
-//added new route settings
+
+// added new route settings
 app.get('/api/settings', jwtMW , (req,res) => {
     res.json({
         success: true,

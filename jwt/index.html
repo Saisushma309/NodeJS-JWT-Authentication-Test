@@ -23,6 +23,7 @@
             <div>
                 <button onclick="login()">Login</button>
                 <button onclick="getDashboard()">Get Dashboard</button>
+                <!-- Adding New button settings -->
                 <button onclick="getSettings()">Get Settings</button>
             </div>
         </main>
@@ -96,6 +97,7 @@
 
 
         function changeUrl( title, url ){
+            // Using pushstate
             if (typeof (history.pushState) !== "undefined") {
                 const obj = { Title: title, Url: url };
                 history.pushState(obj, obj.Title, obj.Url);
@@ -125,6 +127,7 @@
         function handleTokenExpiration() {
             const token = localStorage.getItem('jwt');
             if (isTokenExpired(token)) {
+                // If token is expired reloading to root address
                 localStorage.removeItem('jwt');
                 // window.location.href = '/';
                 // window.location.reload();
